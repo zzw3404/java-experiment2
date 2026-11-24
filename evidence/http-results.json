@@ -1,0 +1,427 @@
+[ {
+  "expected" : 401,
+  "method" : "GET",
+  "response" : {
+    "code" : 401,
+    "message" : "请先登录",
+    "data" : null
+  },
+  "case" : "未登录",
+  "http" : 401,
+  "path" : "/products"
+}, {
+  "expected" : 401,
+  "method" : "POST",
+  "response" : {
+    "code" : 401,
+    "message" : "用户名或口令错误",
+    "data" : null
+  },
+  "case" : "错误密码",
+  "http" : 401,
+  "path" : "/auth/login"
+}, {
+  "expected" : 200,
+  "method" : "POST",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : "admin"
+  },
+  "case" : "登录",
+  "http" : 200,
+  "path" : "/auth/login"
+}, {
+  "expected" : 200,
+  "method" : "GET",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : "admin"
+  },
+  "case" : "当前用户",
+  "http" : 200,
+  "path" : "/auth/me"
+}, {
+  "expected" : 200,
+  "method" : "GET",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "id" : 1,
+      "productName" : "机械键盘",
+      "category" : "数码",
+      "brand" : "远川",
+      "price" : 299.0,
+      "stock" : 15,
+      "saleStatus" : "ON_SALE",
+      "brandId" : 1
+    }
+  },
+  "case" : "商品详情",
+  "http" : 200,
+  "path" : "/products/1"
+}, {
+  "expected" : 200,
+  "method" : "GET",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "records" : [ {
+        "id" : 2,
+        "productName" : "无线鼠标",
+        "category" : "数码",
+        "brand" : "远川",
+        "price" : 89.0,
+        "stock" : 28,
+        "saleStatus" : "ON_SALE",
+        "brandId" : 1
+      } ],
+      "total" : 2,
+      "size" : 1,
+      "current" : 1,
+      "pages" : 2
+    }
+  },
+  "case" : "按品牌类别状态分页",
+  "http" : 200,
+  "path" : "/products?category=%E6%95%B0%E7%A0%81&brandId=1&status=ON_SALE&page=1&size=1"
+}, {
+  "expected" : 200,
+  "method" : "GET",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "records" : [ {
+        "id" : 1,
+        "productName" : "机械键盘",
+        "category" : "数码",
+        "brand" : "远川",
+        "price" : 299.0,
+        "stock" : 15,
+        "saleStatus" : "ON_SALE",
+        "brandId" : 1
+      } ],
+      "total" : 1,
+      "size" : 10,
+      "current" : 1,
+      "pages" : 1
+    }
+  },
+  "case" : "名称模糊查询",
+  "http" : 200,
+  "path" : "/products?name=%E9%94%AE%E7%9B%98"
+}, {
+  "expected" : 200,
+  "method" : "GET",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "records" : [ ],
+      "total" : 3,
+      "size" : 10,
+      "current" : 99,
+      "pages" : 1
+    }
+  },
+  "case" : "超尾页",
+  "http" : 200,
+  "path" : "/products?page=99"
+}, {
+  "expected" : 400,
+  "method" : "GET",
+  "response" : {
+    "code" : 400,
+    "message" : "page 至少为 1，size 为 1 至 100",
+    "data" : null
+  },
+  "case" : "第零页",
+  "http" : 400,
+  "path" : "/products?page=0"
+}, {
+  "expected" : 400,
+  "method" : "GET",
+  "response" : {
+    "code" : 400,
+    "message" : "page 至少为 1，size 为 1 至 100",
+    "data" : null
+  },
+  "case" : "零页大小",
+  "http" : 400,
+  "path" : "/products?size=0"
+}, {
+  "expected" : 400,
+  "method" : "GET",
+  "response" : {
+    "code" : 400,
+    "message" : "page 至少为 1，size 为 1 至 100",
+    "data" : null
+  },
+  "case" : "负页大小",
+  "http" : 400,
+  "path" : "/products?size=-1"
+}, {
+  "expected" : 400,
+  "method" : "GET",
+  "response" : {
+    "code" : 400,
+    "message" : "状态无效",
+    "data" : null
+  },
+  "case" : "非法状态",
+  "http" : 400,
+  "path" : "/products?status=ERROR"
+}, {
+  "expected" : 400,
+  "method" : "GET",
+  "response" : {
+    "code" : 400,
+    "message" : "请求格式或参数类型错误",
+    "data" : null
+  },
+  "case" : "非法ID",
+  "http" : 400,
+  "path" : "/products/abc"
+}, {
+  "expected" : 404,
+  "method" : "GET",
+  "response" : {
+    "code" : 404,
+    "message" : "商品不存在",
+    "data" : null
+  },
+  "case" : "不存在ID",
+  "http" : 404,
+  "path" : "/products/99999"
+}, {
+  "expected" : 404,
+  "method" : "DELETE",
+  "response" : {
+    "code" : 404,
+    "message" : "商品不存在",
+    "data" : null
+  },
+  "case" : "删除不存在商品",
+  "http" : 404,
+  "path" : "/products/99999"
+}, {
+  "expected" : 400,
+  "method" : "DELETE",
+  "response" : {
+    "code" : 400,
+    "message" : "请提供 1 至 100 个有效商品 ID",
+    "data" : null
+  },
+  "case" : "空批删",
+  "http" : 400,
+  "path" : "/products"
+}, {
+  "expected" : 409,
+  "method" : "DELETE",
+  "response" : {
+    "code" : 409,
+    "message" : "商品已有订单记录，无法删除",
+    "data" : null
+  },
+  "case" : "有关联商品拒删",
+  "http" : 409,
+  "path" : "/products/1"
+}, {
+  "expected" : 400,
+  "method" : "POST",
+  "response" : {
+    "code" : 400,
+    "message" : "productName 参数无效",
+    "data" : null
+  },
+  "case" : "空名称",
+  "http" : 400,
+  "path" : "/products"
+}, {
+  "expected" : 400,
+  "method" : "POST",
+  "response" : {
+    "code" : 400,
+    "message" : "productName 参数无效",
+    "data" : null
+  },
+  "case" : "超长名称",
+  "http" : 400,
+  "path" : "/products"
+}, {
+  "expected" : 400,
+  "method" : "POST",
+  "response" : {
+    "code" : 400,
+    "message" : "price 参数无效",
+    "data" : null
+  },
+  "case" : "负价格",
+  "http" : 400,
+  "path" : "/products"
+}, {
+  "expected" : 400,
+  "method" : "POST",
+  "response" : {
+    "code" : 400,
+    "message" : "品牌不存在",
+    "data" : null
+  },
+  "case" : "品牌不存在",
+  "http" : 400,
+  "path" : "/products"
+}, {
+  "expected" : 200,
+  "method" : "POST",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : 4
+  },
+  "case" : "新增",
+  "http" : 200,
+  "path" : "/products"
+}, {
+  "expected" : 200,
+  "method" : "PUT",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : null
+  },
+  "case" : "修改",
+  "http" : 200,
+  "path" : "/products"
+}, {
+  "expected" : 200,
+  "method" : "GET",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "id" : 4,
+      "productName" : "接口测试商品",
+      "category" : "数码",
+      "brand" : "远川",
+      "price" : 49.9,
+      "stock" : 19,
+      "saleStatus" : "ON_SALE",
+      "brandId" : 1
+    }
+  },
+  "case" : "核对修改",
+  "http" : 200,
+  "path" : "/products/4"
+}, {
+  "expected" : 200,
+  "method" : "POST",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : 5
+  },
+  "case" : "新增批删样本",
+  "http" : 200,
+  "path" : "/products"
+}, {
+  "expected" : 409,
+  "method" : "DELETE",
+  "response" : {
+    "code" : 409,
+    "message" : "商品已有订单记录，无法删除",
+    "data" : null
+  },
+  "case" : "批删中途失败",
+  "http" : 409,
+  "path" : "/products"
+}, {
+  "expected" : 200,
+  "method" : "GET",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "id" : 5,
+      "productName" : "批删样本",
+      "category" : "数码",
+      "brand" : "远川",
+      "price" : 49.9,
+      "stock" : 5,
+      "saleStatus" : "ON_SALE",
+      "brandId" : 1
+    }
+  },
+  "case" : "失败后商品仍在",
+  "http" : 200,
+  "path" : "/products/5"
+}, {
+  "expected" : 200,
+  "method" : "POST",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : 6
+  },
+  "case" : "新增第二批删样本",
+  "http" : 200,
+  "path" : "/products"
+}, {
+  "expected" : 200,
+  "method" : "DELETE",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : null
+  },
+  "case" : "批量删除",
+  "http" : 200,
+  "path" : "/products"
+}, {
+  "expected" : 404,
+  "method" : "GET",
+  "response" : {
+    "code" : 404,
+    "message" : "商品不存在",
+    "data" : null
+  },
+  "case" : "批删后确认",
+  "http" : 404,
+  "path" : "/products/5"
+}, {
+  "expected" : 200,
+  "method" : "DELETE",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : null
+  },
+  "case" : "单条删除",
+  "http" : 200,
+  "path" : "/products/4"
+}, {
+  "expected" : 200,
+  "method" : "POST",
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : null
+  },
+  "case" : "退出",
+  "http" : 200,
+  "path" : "/auth/logout"
+}, {
+  "expected" : 401,
+  "method" : "GET",
+  "response" : {
+    "code" : 401,
+    "message" : "请先登录",
+    "data" : null
+  },
+  "case" : "退出后拦截",
+  "http" : 401,
+  "path" : "/products"
+} ]

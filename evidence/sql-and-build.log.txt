@@ -1,0 +1,45 @@
+[INFO] Running study.trade.mis.TradeMisTest
+DEBUG s.t.mis.ProductMapper.selectById - ==>  Preparing: SELECT id,product_name,category,brand,price,stock,sale_status,brand_id FROM lab_trade_product WHERE id=?
+DEBUG s.t.m.P.selectList_mpCount - ==>  Preparing: SELECT COUNT(*) AS total FROM lab_trade_product WHERE (category = ? AND brand_id = ? AND sale_status = ?)
+DEBUG s.t.mis.ProductMapper.selectList - ==>  Preparing: SELECT id,product_name,category,brand,price,stock,sale_status,brand_id FROM lab_trade_product WHERE (category = ? AND brand_id = ? AND sale_status = ?) ORDER BY id DESC LIMIT ?
+DEBUG s.t.m.P.selectList_mpCount - ==>  Preparing: SELECT COUNT(*) AS total FROM lab_trade_product WHERE (product_name LIKE ?)
+DEBUG s.t.mis.ProductMapper.selectList - ==>  Preparing: SELECT id,product_name,category,brand,price,stock,sale_status,brand_id FROM lab_trade_product WHERE (product_name LIKE ?) ORDER BY id DESC LIMIT ?
+DEBUG s.t.m.P.selectList_mpCount - ==>  Preparing: SELECT COUNT(*) AS total FROM lab_trade_product
+DEBUG s.t.mis.ProductMapper.selectById - ==>  Preparing: SELECT id,product_name,category,brand,price,stock,sale_status,brand_id FROM lab_trade_product WHERE id=?
+DEBUG s.t.m.P.countOrderReferences - ==>  Preparing: SELECT COUNT(*) FROM lab_trade_order_line WHERE product_id = ?
+DEBUG s.t.mis.ProductMapper.deleteById - ==>  Preparing: DELETE FROM lab_trade_product WHERE id=?
+DEBUG s.t.m.P.countOrderReferences - ==>  Preparing: SELECT COUNT(*) FROM lab_trade_order_line WHERE product_id = ?
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.trade.mis.ProductMapper.insert - ==>  Preparing: INSERT INTO lab_trade_product ( product_name, category, brand, price, stock, sale_status, brand_id ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.t.mis.ProductMapper.updateById - ==>  Preparing: UPDATE lab_trade_product SET product_name=?, category=?, brand=?, price=?, stock=?, sale_status=?, brand_id=? WHERE id=?
+DEBUG s.t.mis.ProductMapper.selectById - ==>  Preparing: SELECT id,product_name,category,brand,price,stock,sale_status,brand_id FROM lab_trade_product WHERE id=?
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.trade.mis.ProductMapper.insert - ==>  Preparing: INSERT INTO lab_trade_product ( product_name, category, brand, price, stock, sale_status, brand_id ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+DEBUG s.t.m.P.countOrderReferences - ==>  Preparing: SELECT COUNT(*) FROM lab_trade_order_line WHERE product_id = ?
+DEBUG s.t.mis.ProductMapper.deleteById - ==>  Preparing: DELETE FROM lab_trade_product WHERE id=?
+DEBUG s.t.m.P.countOrderReferences - ==>  Preparing: SELECT COUNT(*) FROM lab_trade_order_line WHERE product_id = ?
+DEBUG s.t.mis.ProductMapper.selectById - ==>  Preparing: SELECT id,product_name,category,brand,price,stock,sale_status,brand_id FROM lab_trade_product WHERE id=?
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.trade.mis.ProductMapper.insert - ==>  Preparing: INSERT INTO lab_trade_product ( product_name, category, brand, price, stock, sale_status, brand_id ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+DEBUG s.t.m.P.countOrderReferences - ==>  Preparing: SELECT COUNT(*) FROM lab_trade_order_line WHERE product_id = ?
+DEBUG s.t.mis.ProductMapper.deleteById - ==>  Preparing: DELETE FROM lab_trade_product WHERE id=?
+DEBUG s.t.m.P.countOrderReferences - ==>  Preparing: SELECT COUNT(*) FROM lab_trade_order_line WHERE product_id = ?
+DEBUG s.t.mis.ProductMapper.deleteById - ==>  Preparing: DELETE FROM lab_trade_product WHERE id=?
+DEBUG s.t.mis.ProductMapper.selectById - ==>  Preparing: SELECT id,product_name,category,brand,price,stock,sale_status,brand_id FROM lab_trade_product WHERE id=?
+DEBUG s.t.m.P.countOrderReferences - ==>  Preparing: SELECT COUNT(*) FROM lab_trade_order_line WHERE product_id = ?
+DEBUG s.t.mis.ProductMapper.deleteById - ==>  Preparing: DELETE FROM lab_trade_product WHERE id=?
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.trade.mis.ProductMapper.insert - ==>  Preparing: INSERT INTO lab_trade_product ( product_name, category, brand, price, stock, sale_status, brand_id ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.trade.mis.ProductMapper.insert - ==>  Preparing: INSERT INTO lab_trade_product ( product_name, category, brand, price, stock, sale_status, brand_id ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.trade.mis.ProductMapper.insert - ==>  Preparing: INSERT INTO lab_trade_product ( product_name, category, brand, price, stock, sale_status, brand_id ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.trade.mis.ProductMapper.insert - ==>  Preparing: INSERT INTO lab_trade_product ( product_name, category, brand, price, stock, sale_status, brand_id ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+DEBUG s.t.mis.ProductMapper.findBrandName - ==>  Preparing: SELECT brand_name FROM lab_trade_brand WHERE id = ?
+DEBUG s.trade.mis.ProductMapper.insert - ==>  Preparing: INSERT INTO lab_trade_product ( product_name, category, brand, price, stock, sale_status, brand_id ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.324 s -- in study.trade.mis.TradeMisTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
