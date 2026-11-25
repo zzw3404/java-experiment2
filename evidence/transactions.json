@@ -1,26 +1,26 @@
 [ {
   "scenario" : "无事务",
-  "expected" : 1,
+  "before" : 0,
   "after" : 1,
-  "before" : 0
+  "expected" : 1
 }, {
   "scenario" : "代理入口开启事务",
-  "expected" : 0,
+  "before" : 0,
   "after" : 0,
-  "before" : 0
+  "expected" : 0
 }, {
   "scenario" : "异常被吞",
-  "expected" : 1,
+  "before" : 0,
   "after" : 1,
-  "before" : 0
+  "expected" : 1
 }, {
   "scenario" : "同类自调用",
-  "expected" : 1,
+  "before" : 0,
   "after" : 1,
-  "before" : 0
+  "expected" : 1
 }, {
   "scenario" : "private 方法",
-  "expected" : 1,
+  "before" : 0,
   "after" : 1,
-  "before" : 0
+  "expected" : 1
 } ]

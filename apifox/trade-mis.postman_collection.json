@@ -5,6 +5,35 @@
   },
   "item": [
     {
+      "name": "关联查询未登录",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/catalog/brands",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "catalog",
+            "brands"
+          ]
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401', () => pm.response.to.have.status(401));",
+              "pm.test('业务码', () => pm.expect(pm.response.json().code).to.eql(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
       "name": "未登录",
       "request": {
         "method": "GET",
@@ -142,6 +171,126 @@
             "exec": [
               "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
               "pm.test('业务码', () => pm.expect(pm.response.json().code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "品牌与商品数",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/catalog/brands",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "catalog",
+            "brands"
+          ]
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('业务码', () => pm.expect(pm.response.json().code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "订单与客户",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/catalog/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "catalog",
+            "orders"
+          ]
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('业务码', () => pm.expect(pm.response.json().code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "订单明细联查",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/catalog/orders/1/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "catalog",
+            "orders",
+            "1",
+            "lines"
+          ]
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('业务码', () => pm.expect(pm.response.json().code).to.eql(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "不存在订单",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/catalog/orders/99999/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "catalog",
+            "orders",
+            "99999",
+            "lines"
+          ]
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404', () => pm.response.to.have.status(404));",
+              "pm.test('业务码', () => pm.expect(pm.response.json().code).to.eql(404));"
             ]
           }
         }

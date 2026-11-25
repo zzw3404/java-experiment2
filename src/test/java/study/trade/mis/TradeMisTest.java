@@ -90,10 +90,23 @@ public class TradeMisTest {
 
     @Test
     public void verifyHttpWorkflow() throws Exception {
+        call("关联查询未登录", "GET", "/catalog/brands", null, 401);
         call("未登录", "GET", "/products", null, 401);
         call("错误密码", "POST", "/auth/login", Map.of("username", "admin", "password", "wrong"), 401);
         call("登录", "POST", "/auth/login", Map.of("username", "admin", "password", PASSWORD), 200);
         assertEquals("admin", call("当前用户", "GET", "/auth/me", null, 200).asText());
+        JsonNode brands = call("品牌与商品数", "GET", "/catalog/brands", null, 200);
+        assertEquals(2, brands.size());
+        assertEquals("远川", brands.get(0).path("brandName").asText());
+        assertEquals(2, brands.get(0).path("productCount").asInt());
+        JsonNode orders = call("订单与客户", "GET", "/catalog/orders", null, 200);
+        assertEquals(1, orders.size());
+        assertEquals("LAB-0001", orders.get(0).path("orderNo").asText());
+        JsonNode lines = call("订单明细联查", "GET", "/catalog/orders/1/lines", null, 200);
+        assertEquals(1, lines.size());
+        assertEquals("机械键盘", lines.get(0).path("productName").asText());
+        assertEquals(299, lines.get(0).path("subtotal").asInt());
+        call("不存在订单", "GET", "/catalog/orders/99999/lines", null, 404);
         assertEquals("机械键盘", call("商品详情", "GET", "/products/1", null, 200).path("productName").asText());
         assertEquals(1, call("按品牌类别状态分页", "GET", "/products?category=%E6%95%B0%E7%A0%81&brandId=1&status=ON_SALE&page=1&size=1", null, 200).path("records").size());
         assertEquals(1, call("名称模糊查询", "GET", "/products?name=%E9%94%AE%E7%9B%98", null, 200).path("records").size());

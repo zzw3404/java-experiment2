@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 @EnableWebMvc
 @EnableAspectJAutoProxy
-@Import({ProductController.class, AuthController.class, Errors.class, RequestLog.class})
+@Import({ProductController.class, CatalogController.class, AuthController.class, Errors.class, RequestLog.class})
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -30,6 +30,6 @@ public class WebConfig implements WebMvcConfigurer {
                 response.getWriter().write("{\"code\":401,\"message\":\"请先登录\",\"data\":null}");
                 return false;
             }
-        }).addPathPatterns("/products", "/products/**");
+        }).addPathPatterns("/products", "/products/**", "/catalog/**");
     }
 }

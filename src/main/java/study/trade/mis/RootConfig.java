@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:jdbc.properties")
 @EnableTransactionManagement
 @MapperScan(basePackageClasses = ProductMapper.class, annotationClass = Mapper.class)
-@Import({ProductService.class, TransactionExamples.class})
+@Import({ProductService.class, CatalogService.class, TransactionExamples.class})
 public class RootConfig {
     @Bean(destroyMethod = "close")
     public DruidDataSource dataSource(Environment env) {

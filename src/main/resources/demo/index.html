@@ -1,51 +1,16 @@
 <!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>商品管理 · 数字贸易 MIS</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font:16px "Microsoft YaHei",sans-serif;background:#f2f1ec;color:#162e2b}header{background:#123a35;color:#fff;padding:25px 40px;display:flex;justify-content:space-between;align-items:center}header strong{font: bold 29px Georgia,"Microsoft YaHei",serif}main{padding:28px 40px;max-width:1360px;margin:auto}h1{font-size:26px;margin:0 0 14px}h2{font-size:19px;margin:0 0 12px}section{background:#fffefa;border:1px solid #d6ded7;padding:21px;margin-bottom:16px}form{display:flex;flex-wrap:wrap;gap:8px;align-items:center}input,select,button{font:inherit;padding:8px 10px;border:1px solid #aebdb5;border-radius:4px;background:white}input{width:156px}button{cursor:pointer;background:#20634e;color:white;border-color:#20634e}button.secondary{background:#edf3ee;color:#174333}section.login{max-width:720px}#session{font-size:14px}table{width:100%;border-collapse:collapse;margin-top:12px;text-align:left}td,th{padding:10px;border-bottom:1px solid #dbe4dc}th{background:#e7eee7}td button{padding:4px 8px}.layout{display:grid;grid-template-columns:1.72fr 1fr;gap:16px}pre{white-space:pre-wrap;word-break:break-word;background:#142e29;color:#e7f4eb;padding:15px;margin-bottom:0;min-height:170px;font:13px Consolas,monospace}#endpoint{font:14px Consolas,monospace}#status{font-weight:bold}summary{cursor:pointer}small{color:#45645a} [hidden]{display:none!important}
-</style>
+<link rel="stylesheet" href="style.css">
 <header><strong>数字贸易 / 商品管理</strong><span id="session">未登录</span></header>
 <main><section class="login" id="loginPanel"><h1>登录实验系统</h1><form id="login"><input name="username" value="admin" aria-label="账号" required><input name="password" type="password" placeholder="实验口令" aria-label="口令" required><button>登录</button><button type="button" class="secondary" id="probe">检查登录拦截</button></form></section>
-<div class="layout"><div><section id="dashboard" hidden><h1>商品台账</h1><form id="filter"><input name="name" placeholder="商品名称" aria-label="商品名称"><select name="status" aria-label="状态"><option value="">全部状态</option><option value="ON_SALE">在售</option><option value="OFF_SALE">下架</option></select><input name="category" placeholder="类别" aria-label="类别"><button>搜索</button><button type="button" id="all" class="secondary">全部商品</button><button type="button" id="logout" class="secondary">退出</button></form>
-<table><thead><tr><th>编号</th><th>商品</th><th>类别</th><th>品牌</th><th>单价</th><th>库存</th><th>状态</th><th>操作</th></tr></thead><tbody id="products"></tbody></table><p><small id="total"></small></p></section>
-<section id="editor" hidden><h2>新增商品</h2><form id="save"><input name="productName" placeholder="商品名称" aria-label="新增商品名称" required><input name="category" placeholder="类别" value="数码" required><input name="brandId" type="number" value="1" min="1" required aria-label="品牌编号"><input name="price" type="number" step="0.01" min="0" placeholder="单价" required><input name="stock" type="number" min="0" placeholder="库存" required><select name="saleStatus" aria-label="销售状态"><option value="ON_SALE">在售</option><option value="OFF_SALE">下架</option></select><button>新增商品</button></form></section></div>
+<nav id="nav" hidden aria-label="业务模块">
+<button data-view="dashboard">商品台账</button><button data-view="brands">品牌目录</button>
+<button data-view="orders">订单查询</button><button data-view="lines">订单明细</button>
+<button id="logout" class="secondary">退出</button></nav>
+<div class="layout"><div><section id="dashboard" hidden><h1>商品台账</h1><form id="filter"><input name="name" placeholder="商品名称" aria-label="商品名称"><select name="status" aria-label="状态"><option value="">全部状态</option><option value="ON_SALE">在售</option><option value="OFF_SALE">下架</option></select><input name="category" placeholder="类别" aria-label="类别"><button>搜索</button><button type="button" id="all" class="secondary">全部商品</button><button type="button" id="batch" class="secondary">删除所选</button></form>
+<table><thead><tr><th>选</th><th>编号</th><th>商品</th><th>类别</th><th>品牌</th><th>单价</th><th>库存</th><th>状态</th><th>操作</th></tr></thead><tbody id="products"></tbody></table><p><small id="total"></small></p></section>
+<section id="editor" hidden><h2 id="editorTitle">新增商品</h2><form id="save"><input name="id" type="hidden"><input name="productName" placeholder="商品名称" aria-label="新增商品名称" required><input name="category" placeholder="类别" value="数码" required><input name="brandId" type="number" value="1" min="1" required aria-label="品牌编号"><input name="price" type="number" step="0.01" min="0" placeholder="单价" required><input name="stock" type="number" min="0" placeholder="库存" required><select name="saleStatus" aria-label="销售状态"><option value="ON_SALE">在售</option><option value="OFF_SALE">下架</option></select><button id="saveBtn">新增商品</button><button type="button" id="resetEditor" class="secondary" hidden>取消编辑</button></form></section>
+<section id="brands" hidden><h1>品牌目录</h1><table><thead><tr><th>编号</th><th>品牌</th><th>网站</th><th>商品数</th></tr></thead><tbody id="brandRows"></tbody></table></section>
+<section id="orders" hidden><h1>订单查询</h1><table><thead><tr><th>单号</th><th>客户</th><th>日期</th><th>状态</th><th>操作</th></tr></thead><tbody id="orderRows"></tbody></table></section>
+<section id="lines" hidden><h1>订单明细</h1><form id="lineQuery"><input name="id" type="number" value="1" min="1" required aria-label="订单编号"><button>查明细</button></form><table><thead><tr><th>商品编号</th><th>商品</th><th>数量</th><th>成交价</th><th>小计</th></tr></thead><tbody id="lineRows"></tbody></table></section></div>
 <section><h2>最近一次接口响应</h2><div id="endpoint">等待操作</div><p id="status" role="status"></p><pre id="response">请求结果会在这里显示。</pre></section></div></main>
-<script>
-const by=id=>document.getElementById(id);
-const formData=form=>Object.fromEntries(new FormData(form));
-async function send(method,path,data,show=true){
-  const res=await fetch(new URL('..'+path, window.location.href),{method,headers:data===undefined?{}:{'Content-Type':'application/json'},body:data===undefined?undefined:JSON.stringify(data)});
-  const json=await res.json();
-  if(show){
-    by('endpoint').textContent=method+' '+path;
-    by('status').textContent='HTTP '+res.status+' · '+json.message;
-    by('response').textContent=JSON.stringify(json,null,2);
-  }
-  return {status:res.status,json};
-}
-function logged(value){
-  by('loginPanel').hidden=value;by('dashboard').hidden=!value;by('editor').hidden=!value;
-  by('session').textContent=value?value+' · 已登录':'未登录';
-}
-async function list(filters={},show=true){
-  const params=new URLSearchParams(Object.entries(filters).filter(([,v])=>v!==''));
-  const {json}=await send('GET','/products'+(params.size?'?'+params:''),undefined,show);
-  if(!json.data)return;
-  const rows=json.data.records;by('total').textContent='共 '+json.data.total+' 条 · 当前显示 '+rows.length+' 条';
-  by('products').replaceChildren(...rows.map(p=>{
-    const tr=document.createElement('tr');
-    for(const value of [p.id,p.productName,p.category,p.brand,p.price,p.stock,p.saleStatus==='ON_SALE'?'在售':'下架']){
-      const td=tr.insertCell();td.textContent=value;
-    }
-    const actions=tr.insertCell(), details=document.createElement('button'),del=document.createElement('button');
-    details.textContent='详情';details.className='secondary';details.onclick=()=>send('GET','/products/'+p.id);
-    del.textContent='删除';del.className='secondary';del.onclick=async()=>{if(!confirm('删除商品 '+p.productName+'？'))return;const a=await send('DELETE','/products/'+p.id);if(a.status===200)await list({},false);};
-    actions.append(details,' ',del);return tr;
-  }));
-}
-by('probe').onclick=()=>send('GET','/products');
-by('login').onsubmit=async e=>{e.preventDefault();const result=await send('POST','/auth/login',formData(e.target));if(result.status===200){logged(result.json.data);e.target.reset();await list({},false);}};
-by('logout').onclick=async()=>{await send('POST','/auth/logout');logged(false);};
-by('filter').onsubmit=e=>{e.preventDefault();return list(formData(e.target));};
-by('all').onclick=()=>{by('filter').reset();return list();};
-by('save').onsubmit=async e=>{e.preventDefault();const data=formData(e.target);for(const k of ['brandId','stock','price'])data[k]=Number(data[k]);const r=await send('POST','/products',data);if(r.status===200){e.target.reset();await list({},false);}};
-</script></html>
-
+<script src="app.js"></script></html>

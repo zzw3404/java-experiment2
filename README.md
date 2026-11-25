@@ -1,11 +1,11 @@
 # 数字贸易商品管理 MIS
 
 实验二使用 Spring 5.3、Spring MVC、MyBatis-Plus、Druid 和 Tomcat 9。
-沿用实验一的商品、品牌、客户、订单、订单明细模型。业务范围为商品管理。
+沿用实验一的商品、品牌、客户、订单、订单明细模型。商品支持维护，品牌、订单和订单明细提供关联查询。
 
 ## 自动验证
 在项目根目录运行 `mvn test`。测试启动仅监听回环地址的 Tomcat 9，
-向 H2 MySQL 兼容模式载入 sql/init.sql，执行 33 次 HTTP 核对和 5 组事务实验。
+向 H2 MySQL 兼容模式载入 sql/init.sql，执行 38 次 HTTP 核对和 5 组事务实验。
 结果输出到 target/evidence。交付包 evidence 中保存本次记录。
 
 ## MySQL 和 Tomcat 部署
@@ -36,3 +36,6 @@ MyBatis-Plus Mapper / 分页插件 → Druid → MySQL。
 部署后访问 /trade-mis/demo/index.html。使用同一套实验账号登录后，可以查看列表、
 按名称和状态筛选、查看详情、新增商品或尝试删除商品。页面右栏显示实际 HTTP 状态与 JSON。
 批量操作及分页边界可使用 apifox/ 下的接口集合验证。
+
+
+完整部署步骤、登录环境变量和验收脚本见 docs/部署与验收.md。
