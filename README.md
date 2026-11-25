@@ -31,3 +31,8 @@ MyBatis-Plus Mapper / 分页插件 → Druid → MySQL。
 ## Git 历史
 交付包内 trade-mis-history.bundle 可用 git clone trade-mis-history.bundle trade-mis-history
 恢复提交与 v1.0.0 标签。开发记录见 docs/AI记录.md。
+
+## 浏览器联调页
+部署后访问 /trade-mis/demo/index.html。使用同一套实验账号登录后，可以查看列表、
+按名称和状态筛选、查看详情、新增商品或尝试删除商品。页面右栏显示实际 HTTP 状态与 JSON。
+批量操作及分页边界可使用 apifox/ 下的接口集合验证。

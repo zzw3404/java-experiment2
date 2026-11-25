@@ -11,6 +11,12 @@ import org.springframework.web.servlet.config.annotation.*;
 @Import({ProductController.class, AuthController.class, Errors.class, RequestLog.class})
 public class WebConfig implements WebMvcConfigurer {
     @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/demo/**")
+                .addResourceLocations("classpath:/demo/");
+    }
+
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new HandlerInterceptor() {
             @Override
