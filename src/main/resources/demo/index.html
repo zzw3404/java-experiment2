@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>企业员工管理系统</title><link rel="stylesheet" href="style.css"><script src="app.js" defer></script></head>
+<body>
+<header><div><div class="eyebrow">人力资源管理</div><h1>企业员工管理系统</h1></div><button id="logout" hidden>退出登录</button></header>
+<main>
+<section id="sign-in" class="card login">
+<h2>管理员登录</h2><form id="login-form">
+<label>账号<input name="username" value="admin" required autocomplete="username"></label>
+<label>口令<input name="password" type="password" required autocomplete="current-password"></label>
+<button class="primary">登录</button></form></section>
+<p id="message" role="status" hidden></p>
+<div id="console" hidden>
+<nav aria-label="管理模块"><button id="show-employees" class="primary">员工档案</button><button id="show-departments">部门概览</button></nav>
+<section id="employees" class="card">
+<div class="section-title"><h2>员工档案</h2><div><button id="add" class="primary">新增员工</button> <button id="batch" disabled>批量删除</button></div></div>
+<form id="filters" class="filters">
+<label>姓名<input name="name" placeholder="输入姓名关键字"></label><label>部门<select name="dept"><option value="">全部部门</option></select></label>
+<label>性别<select name="gender"><option value="">全部性别</option><option>女</option><option>男</option></select></label>
+<label>状态<select name="status"><option value="">全部状态</option><option value="1">在职</option><option value="0">离职</option></select></label>
+<button class="primary">查询</button><button type="reset">重置</button></form>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col"><input id="select-all" type="checkbox" aria-label="选择本页全部员工"></th><th>编号</th><th>姓名</th><th>性别</th><th>部门</th><th>岗位</th><th>月薪（元）</th><th>入职日期</th><th>状态</th><th>操作</th></tr></thead><tbody id="employee-rows"></tbody></table></div>
+<div class="pager"><span id="page-info"></span><button id="prev">上一页</button><button id="next">下一页</button></div>
+</section>
+<section id="departments" class="card" hidden><div class="section-title"><h2>部门概览</h2><span>按员工档案实时汇总</span></div><div id="department-grid"></div></section>
+</div>
+<dialog id="editor"><form id="employee-form"><div class="section-title"><h2 id="editor-title">新增员工</h2><button type="button" id="close">关闭</button></div>
+<div class="form-grid">
+<label>姓名<input name="empName" required maxlength="50"></label><label>性别<select name="gender"><option>女</option><option>男</option></select></label>
+<label>部门<input name="dept" required maxlength="50" list="department-options"><datalist id="department-options"></datalist></label><label>岗位<input name="post" required maxlength="50"></label>
+<label>月薪（元）<input name="salary" type="number" min="0" max="99999999.99" step=".01" required></label><label>入职日期<input name="hireDate" type="date" required></label>
+<label>状态<select name="status"><option value="1">在职</option><option value="0">离职</option></select></label>
+</div><p role="status" id="editor-message" hidden></p><button type="submit" class="primary" id="save">保存档案</button></form></dialog>
+</main>
+</body></html>

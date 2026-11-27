@@ -1,0 +1,567 @@
+[ {
+  "response" : {
+    "code" : 401,
+    "message" : "请先登录",
+    "data" : null
+  },
+  "method" : "GET",
+  "expected" : 401,
+  "path" : "/emps",
+  "http" : 401,
+  "case" : "未登录"
+}, {
+  "response" : {
+    "code" : 401,
+    "message" : "用户名或口令错误",
+    "data" : null
+  },
+  "method" : "POST",
+  "expected" : 401,
+  "path" : "/auth/login",
+  "http" : 401,
+  "case" : "错误口令"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : "admin"
+  },
+  "method" : "POST",
+  "expected" : 200,
+  "path" : "/auth/login",
+  "http" : 200,
+  "case" : "登录"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : "admin"
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/auth/me",
+  "http" : 200,
+  "case" : "当前会话"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "records" : [ {
+        "empId" : 5,
+        "empName" : "宋琳",
+        "gender" : "女",
+        "dept" : "运营部",
+        "post" : "运营专员",
+        "salary" : 8800.0,
+        "hireDate" : "2025-03-03",
+        "status" : 1
+      }, {
+        "empId" : 4,
+        "empName" : "周宁",
+        "gender" : "男",
+        "dept" : "财务部",
+        "post" : "会计",
+        "salary" : 9200.0,
+        "hireDate" : "2021-09-06",
+        "status" : 0
+      }, {
+        "empId" : 3,
+        "empName" : "何晓",
+        "gender" : "女",
+        "dept" : "人力资源部",
+        "post" : "招聘专员",
+        "salary" : 8500.0,
+        "hireDate" : "2022-07-11",
+        "status" : 1
+      }, {
+        "empId" : 2,
+        "empName" : "陈远",
+        "gender" : "男",
+        "dept" : "研发部",
+        "post" : "测试工程师",
+        "salary" : 9800.0,
+        "hireDate" : "2024-02-21",
+        "status" : 1
+      }, {
+        "empId" : 1,
+        "empName" : "林晨",
+        "gender" : "女",
+        "dept" : "研发部",
+        "post" : "Java 工程师",
+        "salary" : 12500.0,
+        "hireDate" : "2023-04-17",
+        "status" : 1
+      } ],
+      "total" : 5,
+      "size" : 10,
+      "current" : 1,
+      "pages" : 1
+    }
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps",
+  "http" : 200,
+  "case" : "员工总数"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "records" : [ {
+        "empId" : 2,
+        "empName" : "陈远",
+        "gender" : "男",
+        "dept" : "研发部",
+        "post" : "测试工程师",
+        "salary" : 9800.0,
+        "hireDate" : "2024-02-21",
+        "status" : 1
+      }, {
+        "empId" : 1,
+        "empName" : "林晨",
+        "gender" : "女",
+        "dept" : "研发部",
+        "post" : "Java 工程师",
+        "salary" : 12500.0,
+        "hireDate" : "2023-04-17",
+        "status" : 1
+      } ],
+      "total" : 2,
+      "size" : 10,
+      "current" : 1,
+      "pages" : 1
+    }
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps?dept=%E7%A0%94%E5%8F%91%E9%83%A8&status=1",
+  "http" : 200,
+  "case" : "研发部在职"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "records" : [ {
+        "empId" : 1,
+        "empName" : "林晨",
+        "gender" : "女",
+        "dept" : "研发部",
+        "post" : "Java 工程师",
+        "salary" : 12500.0,
+        "hireDate" : "2023-04-17",
+        "status" : 1
+      } ],
+      "total" : 1,
+      "size" : 10,
+      "current" : 1,
+      "pages" : 1
+    }
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps?name=%E6%9E%97",
+  "http" : 200,
+  "case" : "姓名筛选"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "records" : [ {
+        "empId" : 5,
+        "empName" : "宋琳",
+        "gender" : "女",
+        "dept" : "运营部",
+        "post" : "运营专员",
+        "salary" : 8800.0,
+        "hireDate" : "2025-03-03",
+        "status" : 1
+      }, {
+        "empId" : 4,
+        "empName" : "周宁",
+        "gender" : "男",
+        "dept" : "财务部",
+        "post" : "会计",
+        "salary" : 9200.0,
+        "hireDate" : "2021-09-06",
+        "status" : 0
+      } ],
+      "total" : 5,
+      "size" : 2,
+      "current" : 1,
+      "pages" : 3
+    }
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps?page=1&size=2",
+  "http" : 200,
+  "case" : "限制每页记录"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "records" : [ ],
+      "total" : 5,
+      "size" : 2,
+      "current" : 99,
+      "pages" : 3
+    }
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps?page=99&size=2",
+  "http" : 200,
+  "case" : "超出末页"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "empId" : 1,
+      "empName" : "林晨",
+      "gender" : "女",
+      "dept" : "研发部",
+      "post" : "Java 工程师",
+      "salary" : 12500.0,
+      "hireDate" : "2023-04-17",
+      "status" : 1
+    }
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps/1",
+  "http" : 200,
+  "case" : "员工详情"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : [ {
+      "dept" : "人力资源部",
+      "total" : 1,
+      "active" : 1
+    }, {
+      "dept" : "研发部",
+      "total" : 2,
+      "active" : 2
+    }, {
+      "dept" : "财务部",
+      "total" : 1,
+      "active" : 0
+    }, {
+      "dept" : "运营部",
+      "total" : 1,
+      "active" : 1
+    } ]
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps/departments",
+  "http" : 200,
+  "case" : "部门统计"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : [ {
+      "empId" : 1,
+      "empName" : "林晨",
+      "gender" : "女",
+      "dept" : "研发部",
+      "post" : "Java 工程师",
+      "salary" : 12500.0,
+      "hireDate" : "2023-04-17",
+      "status" : 1
+    }, {
+      "empId" : 2,
+      "empName" : "陈远",
+      "gender" : "男",
+      "dept" : "研发部",
+      "post" : "测试工程师",
+      "salary" : 9800.0,
+      "hireDate" : "2024-02-21",
+      "status" : 1
+    } ]
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps/department?name=%E7%A0%94%E5%8F%91%E9%83%A8",
+  "http" : 200,
+  "case" : "部门成员"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "records" : [ {
+        "empId" : 5,
+        "empName" : "宋琳",
+        "gender" : "女",
+        "dept" : "运营部",
+        "post" : "运营专员",
+        "salary" : 8800.0,
+        "hireDate" : "2025-03-03",
+        "status" : 1
+      }, {
+        "empId" : 3,
+        "empName" : "何晓",
+        "gender" : "女",
+        "dept" : "人力资源部",
+        "post" : "招聘专员",
+        "salary" : 8500.0,
+        "hireDate" : "2022-07-11",
+        "status" : 1
+      }, {
+        "empId" : 1,
+        "empName" : "林晨",
+        "gender" : "女",
+        "dept" : "研发部",
+        "post" : "Java 工程师",
+        "salary" : 12500.0,
+        "hireDate" : "2023-04-17",
+        "status" : 1
+      } ],
+      "total" : 3,
+      "size" : 10,
+      "current" : 1,
+      "pages" : 1
+    }
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps?gender=%E5%A5%B3",
+  "http" : 200,
+  "case" : "性别筛选"
+}, {
+  "response" : {
+    "code" : 400,
+    "message" : "页码至少为 1，每页记录数必须为 1 至 100",
+    "data" : null
+  },
+  "method" : "GET",
+  "expected" : 400,
+  "path" : "/emps?page=0",
+  "http" : 400,
+  "case" : "非法页码"
+}, {
+  "response" : {
+    "code" : 400,
+    "message" : "页码至少为 1，每页记录数必须为 1 至 100",
+    "data" : null
+  },
+  "method" : "GET",
+  "expected" : 400,
+  "path" : "/emps?size=101",
+  "http" : 400,
+  "case" : "非法页长"
+}, {
+  "response" : {
+    "code" : 400,
+    "message" : "员工状态仅允许 0 或 1",
+    "data" : null
+  },
+  "method" : "GET",
+  "expected" : 400,
+  "path" : "/emps?status=2",
+  "http" : 400,
+  "case" : "非法状态"
+}, {
+  "response" : {
+    "code" : 404,
+    "message" : "员工不存在",
+    "data" : null
+  },
+  "method" : "GET",
+  "expected" : 404,
+  "path" : "/emps/999999",
+  "http" : 404,
+  "case" : "缺失员工"
+}, {
+  "response" : {
+    "code" : 400,
+    "message" : "请提供 1 至 100 个有效员工编号",
+    "data" : null
+  },
+  "method" : "DELETE",
+  "expected" : 400,
+  "path" : "/emps",
+  "http" : 400,
+  "case" : "空删除"
+}, {
+  "response" : {
+    "code" : 400,
+    "message" : "empName 参数无效",
+    "data" : null
+  },
+  "method" : "POST",
+  "expected" : 400,
+  "path" : "/emps",
+  "http" : 400,
+  "case" : "空姓名"
+}, {
+  "response" : {
+    "code" : 400,
+    "message" : "入职日期无效",
+    "data" : null
+  },
+  "method" : "POST",
+  "expected" : 400,
+  "path" : "/emps",
+  "http" : 400,
+  "case" : "非法日期"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : 11
+  },
+  "method" : "POST",
+  "expected" : 200,
+  "path" : "/emps",
+  "http" : 200,
+  "case" : "新增员工"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : null
+  },
+  "method" : "PUT",
+  "expected" : 200,
+  "path" : "/emps",
+  "http" : 200,
+  "case" : "修改员工"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "empId" : 11,
+      "empName" : "测试人员甲",
+      "gender" : "女",
+      "dept" : "研发部",
+      "post" : "项目主管",
+      "salary" : 15000.0,
+      "hireDate" : "2025-03-01",
+      "status" : 1
+    }
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps/11",
+  "http" : 200,
+  "case" : "核对岗位"
+}, {
+  "response" : {
+    "code" : 404,
+    "message" : "员工不存在：999999",
+    "data" : null
+  },
+  "method" : "DELETE",
+  "expected" : 404,
+  "path" : "/emps",
+  "http" : 404,
+  "case" : "批删遇到不存在编号"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : {
+      "empId" : 11,
+      "empName" : "测试人员甲",
+      "gender" : "女",
+      "dept" : "研发部",
+      "post" : "项目主管",
+      "salary" : 15000.0,
+      "hireDate" : "2025-03-01",
+      "status" : 1
+    }
+  },
+  "method" : "GET",
+  "expected" : 200,
+  "path" : "/emps/11",
+  "http" : 200,
+  "case" : "回滚后员工仍在"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : 12
+  },
+  "method" : "POST",
+  "expected" : 200,
+  "path" : "/emps",
+  "http" : 200,
+  "case" : "新增第二员工"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : null
+  },
+  "method" : "DELETE",
+  "expected" : 200,
+  "path" : "/emps",
+  "http" : 200,
+  "case" : "批删员工"
+}, {
+  "response" : {
+    "code" : 404,
+    "message" : "员工不存在",
+    "data" : null
+  },
+  "method" : "GET",
+  "expected" : 404,
+  "path" : "/emps/11",
+  "http" : 404,
+  "case" : "批删后不存在"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : null
+  },
+  "method" : "DELETE",
+  "expected" : 200,
+  "path" : "/emps/5",
+  "http" : 200,
+  "case" : "单删员工"
+}, {
+  "response" : {
+    "code" : 404,
+    "message" : "员工不存在",
+    "data" : null
+  },
+  "method" : "GET",
+  "expected" : 404,
+  "path" : "/emps/5",
+  "http" : 404,
+  "case" : "单删后不存在"
+}, {
+  "response" : {
+    "code" : 200,
+    "message" : "成功",
+    "data" : null
+  },
+  "method" : "POST",
+  "expected" : 200,
+  "path" : "/auth/logout",
+  "http" : 200,
+  "case" : "退出"
+}, {
+  "response" : {
+    "code" : 401,
+    "message" : "请先登录",
+    "data" : null
+  },
+  "method" : "GET",
+  "expected" : 401,
+  "path" : "/emps",
+  "http" : 401,
+  "case" : "退出后未登录"
+} ]

@@ -1,0 +1,26 @@
+[ {
+  "before" : 0,
+  "scenario" : "未开启事务",
+  "after" : 1
+}, {
+  "before" : 0,
+  "scenario" : "事务代理",
+  "after" : 0
+}, {
+  "before" : 0,
+  "scenario" : "异常被捕获",
+  "after" : 1
+}, {
+  "before" : 0,
+  "scenario" : "内部自调用",
+  "after" : 1
+}, {
+  "before" : 0,
+  "scenario" : "private 方法",
+  "after" : 1
+}, {
+  "fixture" : 11,
+  "before" : 1,
+  "reason" : "第二条编号不存在",
+  "after" : 1
+} ]
